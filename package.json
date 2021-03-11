@@ -1,0 +1,27 @@
+{
+  "name": "react-basic",
+  "version": "1.0.0",
+  "description": "zerocho React 기본 강좌 연습",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bellin83/react-basic.git"
+  },
+  "author": "bellin83",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bellin83/react-basic/issues"
+  },
+  "homepage": "https://github.com/bellin83/react-basic#readme",
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.24.4",
+    "webpack-cli": "^4.5.0"
+  }
+}
