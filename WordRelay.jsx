@@ -3,14 +3,48 @@ const { Component } = React;
 
 class WordRelay extends Component {
   state = {
-    text: 'Hello, webpack',
+    word: '황종인',
+    value: '',
+    result: '',
+  };
+
+  onSubmitForm = (e) => {
+    e.preventDefault();
+    if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {
+      this.setState({
+        result: '딩동댕',
+        word: this.state.value,
+        value: '',
+      });
+    } else {
+      this.setState({
+        result: '땡',
+        value: '',
+      });
+    }
+    this.input.focus();
+  };
+
+  onChangeInput = (e) => {
+    this.setState({value: e.target.value});
+  };
+
+  input;
+
+  onRefInput = (cursor) => {
+    this.input = cursor;
   };
 
   render() {
     return (
-      <h1>
-        {this.state.text}
-      </h1>
+      <>
+        <div>{this.state.word}</div>
+        <form onSubmit={this.onSubmitForm}>
+          <input ref={this.onRefInput} value={this.state.value} onChange={this.onChangeInput} />
+          <button>입력!</button>
+        </form>
+        <div>{this.state.result}</div>
+      </>
     );
   }
 }
