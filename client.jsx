@@ -4,5 +4,5 @@ const ReactDom = require('react-dom');
 // const WordRelay = require('./WordRelay');
 // ReactDom.render(<WordRelay />, document.querySelector('#root'));
 
-const NumberBaseball = require('./RenderTest');
+const NumberBaseball = require('./NumberBaseball');
 ReactDom.render(<NumberBaseball />, document.querySelector('#root'));

@@ -1,5 +1,5 @@
 const React = require('react');
-const { useState, useRef } = require('react');
+const { useState, useRef, memo } = require('react');
 const Try = require('./Try');
 
 //랜덤하게 숫자 4개 뽑는 함수
@@ -15,7 +15,7 @@ function getNumbers() {
   return array;
 }
 
-const NumberBaseball = () => {
+const NumberBaseball = memo(() => {
   const [result, setResult] = useState('');
   const [value, setValue] = useState('');
   const [answer, setAnswer] = useState(getNumbers());
@@ -86,6 +86,6 @@ const NumberBaseball = () => {
       </ul>
     </>
   );
-};
+});
 
 module.exports = NumberBaseball;
