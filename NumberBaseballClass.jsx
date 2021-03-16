@@ -1,5 +1,5 @@
 const React = require('react');
-const { Component } = require('react');
+const { Component, createRef } = require('react');
 const Try = require('./Try');
 
 //랜덤하게 숫자 4개 뽑는 함수
@@ -72,6 +72,7 @@ class NumberBaseballClass extends Component {
           }
         });
       }
+      this.inputRef.current.focus();
     }
   };
 
@@ -82,13 +83,15 @@ class NumberBaseballClass extends Component {
     });
   };
 
+  inputRef = createRef();
+
   render() {
     const { result, tries, value } = this.state;
     return (
       <>
         <h1>{result}</h1>
         <form onSubmit={this.onSubmitForm}>
-          <input maxLength={4} value={value} onChange={this.onChangeInput} />
+          <input ref={this.inputRef} maxLength={4} value={value} onChange={this.onChangeInput} />
         </form>
         <div>시도: {tries.length}</div>
         <ul>
