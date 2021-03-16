@@ -1,20 +1,20 @@
 const React = require('react');
-const { Component } = require('react');
+const { PureComponent } = require('react');
 
-class Test extends Component {
+class Test extends PureComponent {
   state = {
     counter: 0,
+    string: 'hello',
+    number: 1,
+    boolean: true,
+    object: {},
+    array: [],
   };
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    if (this.state.counter !== nextState.counter) {
-      return true;
-    }
-    return false;
-  }
-
   onClick = () => {
-    this.setState({});
+    this.setState({
+      array: [...this.state.array, 1],
+    });
   };
 
   render() {
