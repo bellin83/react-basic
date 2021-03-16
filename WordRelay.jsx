@@ -35,6 +35,6 @@ const WordRelay = () => {
       <div>{result}</div>
     </>
   );
-}
+};
 
 module.exports = WordRelay;
