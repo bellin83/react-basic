@@ -1,5 +1,6 @@
 const React = require('react');
 const { Component } = require('react');
+const Ball = require('./Ball');
 
 function getWinNumbers() {
   console.log('getWinNumbers');
@@ -19,17 +20,24 @@ function getWinNumbers() {
 
 class Lotte extends Component {
   state = {
-    winNumbers: getWinNumbers(),
+    winNumbers: getWinNumbers(), // 당첨 숫자들
     winBalls: [],
-    bonus: null,
+    bonus: null, // 보너스 숫
     redo: false,
   };
 
   render() {
+    const { winBalls, bonus, redo } = this.state;
     return (
-      <div>
-
-      </div>
+      <>
+        <div>당첨 숫자</div>
+        <div id='결과창'>
+          {winBalls.map((v) => <Ball key={v} number={v} />)}
+        </div>
+        <div>보너스!</div>
+        {bonus && <Ball number={bonus} />}
+        <button onClick={redo ? this.onClickRedo : () => {}}>한 번 더!</button>
+      </>
     );
   }
 }
