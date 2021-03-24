@@ -1,9 +1,9 @@
 const React = require('react');
-const { useState, useRef, useEffect } = require('react');
+const { useState, useRef, useEffect, useMemo, useCallback } = require('react');
 const Ball = require('./Ball');
 
 function getWinNumbers() {
-  // console.log('getWinNumbers');
+  console.log('getWinNumbers');
 
   const candidate = Array(45).fill().map((v, i) => i + 1);
   const shuffle = [];
@@ -19,14 +19,14 @@ function getWinNumbers() {
 }
 
 const Lotto = () => {
-  const [winNumbers, setWinNumbers] = useState(getWinNumbers());
+  const lotteNumbers = useMemo(() => getWinNumbers(), []);
+  const [winNumbers, setWinNumbers] = useState(lotteNumbers);
   const [winBalls, setWinBalls] = useState([]);
   const [bonus, setBonus] = useState(null);
   const [redo, setRedo] = useState(false);
   const timeouts = useRef([]);
 
   useEffect(() => {
-    console.log('useEffect');
     for (let i = 0; i < winNumbers.length - 1; i++) {
       timeouts.current[i] = setTimeout(() => {
         setWinBalls(prevWinBalls => [...prevWinBalls, winNumbers[i]]);
@@ -46,13 +46,13 @@ const Lotto = () => {
   }, [timeouts.current]); // 빈 배열이면 componentDidMount와 동일
   // 배열에 요소가 있으면 componentDidMount랑 componentDidUpdate 둘 다 수행
 
-  const onClickRedo = () => {
+  const onClickRedo = useCallback(() => {
     setWinNumbers(getWinNumbers());
     setWinBalls([]);
     setBonus(null);
     setRedo(false);
     timeouts.current = [];
-  };
+  }, [winNumbers]);
 
   return (
     <>
