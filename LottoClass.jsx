@@ -18,7 +18,7 @@ function getWinNumbers() {
   return [...winNumbers, bonusNumber];
 }
 
-class Lotto extends Component {
+class LottoClass extends Component {
   state = {
     winNumbers: getWinNumbers(), // 당첨 숫자들
     winBalls: [],
@@ -30,7 +30,7 @@ class Lotto extends Component {
 
   runTimeouts = () => {
     const { winNumbers } = this.state;
-    for (let i = 0; i< winNumbers.length - 1; i++) {
+    for (let i = 0; i < winNumbers.length - 1; i++) {
       this.timeouts[i] = setTimeout(() => {
         this.setState(prevState => {
           return {
@@ -53,7 +53,7 @@ class Lotto extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.winBalls.length === 0) {
+    if (this.timeouts.length === 0) {
       this.runTimeouts();
     }
   }
@@ -90,4 +90,4 @@ class Lotto extends Component {
   }
 }
 
-module.exports = Lotto;
+module.exports = LottoClass;
