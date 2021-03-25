@@ -1,5 +1,5 @@
 const React = require('react');
-const { useState, useReducer } = require('react');
+const { useState, useReducer, useCallback } = require('react');
 const Table = require('./Table');
 
 const initialState = {
@@ -8,8 +8,16 @@ const initialState = {
   tableData: [['','',''], ['','',''], ['','','']],
 };
 
-const reducer = (state, action) => {
+const SET_WINNER = 'SET_WINNER';
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case SET_WINNER :
+      return {
+        ...state,
+        winner: action.winner,
+      };
+  }
 };
 
 const TicTacToe = () => {
@@ -19,10 +27,14 @@ const TicTacToe = () => {
   // const [turn, setTurn] = useState('o');
   // const [tableData, setTableData] = useState[['','',''], ['','',''], ['','','']];
 
+  const onClickTable = useCallback(() => {
+    dispatch({ type: SET_WINNER, winner: 'o' });
+  }, []);
+
   return (
     <>
-      <Table />
-      {winner && <div>{winner}님의 승리</div>}
+      <Table onClick={onClickTable} tableData={state.tableData} />
+      {state.winner && <div>{state.winner}님의 승리</div>}
     </>
   );
 };
