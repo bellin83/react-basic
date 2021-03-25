@@ -10,6 +10,10 @@ const ReactDom = require('react-dom');
 // const RSP = require('./RSP');
 // ReactDom.render(<RSP />, document.querySelector('#root'));
 
-// Lotte
-const Lotto = require('./Lotto');
-ReactDom.render(<Lotto />, document.querySelector('#root'));
+// // Lotte
+// const Lotto = require('./Lotto');
+// ReactDom.render(<Lotto />, document.querySelector('#root'));
+
+// TicTacToe
+const TicTacToe = require('./TicTacToe');
+ReactDom.render(<TicTacToe />, document.querySelector('#root'));

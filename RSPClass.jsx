@@ -110,7 +110,6 @@ class RSP extends Component {
         <div>현재 {score}점</div>
       </>
     );
-
   }
 }
 
