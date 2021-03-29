@@ -28,7 +28,31 @@ export const START_GAME = 'START_GAME';
 
 
 function plantMine(row, cell, mine) {
-  return undefined;
+  console.log(row, cell, mine);
+  const candidate = Array(row * cell).fill().map((arr, i) => {
+    return i;
+  });
+  const shuffle = [];
+  while (candidate.length > row * cell - mine) {
+    const chosen = candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0];
+    shuffle.push(chosen);
+  }
+  const data = [];
+  for (let i = 0; i < row; i++) {
+    const rowData = [];
+    data.push(rowData);
+    for(let j = 0; j < cell; j++) {
+      rowData.push(CODE.NORMAL);
+    }
+  }
+
+  for (let k = 0; k < shuffle.length; k++) {
+    const ver = Math.floor(shuffle[k] / cell);
+    const hor = shuffle[k] % cell;
+    data[ver][hor] = CODE.MINE;
+  }
+console.log('data>>>>>', data);
+  return data;
 }
 
 const reducer = (state, action) => {
@@ -46,7 +70,7 @@ const reducer = (state, action) => {
 
 const MineSearch = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const value = useMemo(() => { tableData: state.tableData, dispatch }, [state.tableData]);
+  const value = useMemo(() => ({ tableData: state.tableData, dispatch }), [state.tableData]);
 
   return (
     <TableContext.Provider value={{ value }}>
