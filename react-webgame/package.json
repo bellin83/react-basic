@@ -4,7 +4,7 @@
   "description": "zerocho React 기본 강좌 연습",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --env development"
+    "dev": "../node_modules/.bin/webpack serve --env development"
   },
   "repository": {
     "type": "git",
